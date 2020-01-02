@@ -1,7 +1,8 @@
 const db = require("../../../database/dbConfig.js");
 module.exports = {
   getByUserId,
-  addProject
+  addProject,
+  editProject
 };
 
 function getByUserId(userID) {
@@ -23,4 +24,14 @@ async function addProject(project, userID) {
    await db("user_projects").insert(newUserProject);
 
   return getByUserId(userID);
+}
+
+async function editProject(userID, projectID, changes) {
+  const id = projectID;
+  return getByUserId(userID)
+  .then(res => {
+     return db('projects')
+    .where({ id })
+    .update(changes, 'id')
+  })
 }
