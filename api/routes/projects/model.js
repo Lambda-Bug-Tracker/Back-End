@@ -1,11 +1,14 @@
-const db = require('../../../database/dbConfig.js')
+const db = require("../../../database/dbConfig.js");
 module.exports = {
-    getByUserId
-}
+  getByUserId
+};
+
 function getByUserId(userID) {
-    return db('project_members as pm')
-    .join('users', 'users.id', 'pm.user_id')
-    .join('projects', 'projects.id', 'pm.project_id')
-    .select('pm.id', 'pm.is_project_admin', 'projects.name', 'projects.description')
-    .where(userID)
+  console.log("userId: ", userID);
+
+  return db("user_projects as up")
+    .join("users", "users.id", "=", "up.user_id")
+    .join("projects", "projects.id", "=", "up.project_id", )
+    .select("projects.name as project_name", "projects.description")
+    .where("up.user_id", userID);
 }
