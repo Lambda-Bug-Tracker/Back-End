@@ -1,8 +1,7 @@
-
 exports.up = function(knex) {
-  return knex.schema.createTable('project_bugs', tbl => {
-      tbl.increments()
-      tbl
+  return knex.schema.createTable("project_bugs", tbl => {
+    tbl.increments();
+    tbl
       .integer("project_id")
       .unsigned()
       .notNullable()
@@ -10,7 +9,7 @@ exports.up = function(knex) {
       .inTable("projects")
       .onDelete("CASCADE")
       .onUpdate("CASCADE");
-      tbl
+    tbl
       .integer("bug_id")
       .unsigned()
       .notNullable()
@@ -18,7 +17,7 @@ exports.up = function(knex) {
       .inTable("bugs")
       .onDelete("CASCADE")
       .onUpdate("CASCADE");
-      tbl
+    tbl
       .integer("additional_note_id")
       .unsigned()
       .notNullable()
@@ -26,7 +25,7 @@ exports.up = function(knex) {
       .inTable("additional_notes")
       .onDelete("CASCADE")
       .onUpdate("CASCADE");
-      tbl
+    tbl
       .integer("progress_tag_id")
       .unsigned()
       .notNullable()
@@ -34,7 +33,7 @@ exports.up = function(knex) {
       .inTable("progress_tags")
       .onDelete("CASCADE")
       .onUpdate("CASCADE");
-      tbl
+    tbl
       .integer("hashtag_id")
       .unsigned()
       .notNullable()
@@ -42,9 +41,9 @@ exports.up = function(knex) {
       .inTable("hashtags")
       .onDelete("CASCADE")
       .onUpdate("CASCADE");
-  })
+  });
 };
 
 exports.down = function(knex) {
-  return knex.schema.dropTableIfExists('project_bugs')
+  return knex.schema.dropTableIfExists("project_bugs");
 };
