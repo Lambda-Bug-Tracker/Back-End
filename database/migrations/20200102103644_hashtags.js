@@ -1,5 +1,5 @@
 exports.up = function(knex) {
-  return knex.schema.createTable("hashtag", tbl => {
+  return knex.schema.createTable("hashtags", tbl => {
     tbl.increments();
     tbl
       .string("tag_name")
@@ -9,5 +9,5 @@ exports.up = function(knex) {
 };
 
 exports.down = function(knex) {
-  return knex.schema.dropTableIfExists("hashtag");
+  return knex.schema.dropTableIfExists("hashtags");
 };
