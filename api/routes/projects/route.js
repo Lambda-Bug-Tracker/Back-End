@@ -13,7 +13,7 @@ router.get("/:user_id", firebaseToUser, async (req, res) => {
     .catch(err => res.status(500).json({ err: err.message }));
 });
 
-router.post("/:id", (req, res) => {
+router.post("/:user_id", firebaseToUser, (req, res) => {
   const { id } = req.params;
   const body = req.body;
 
