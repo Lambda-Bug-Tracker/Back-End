@@ -1,5 +1,5 @@
 exports.up = function(knex) {
-  return knex.schema.createTable("progress_tag", tbl => {
+  return knex.schema.createTable("progress_tags", tbl => {
     tbl.increments();
     tbl
       .string("tag_name", 128)
@@ -9,5 +9,5 @@ exports.up = function(knex) {
 };
 
 exports.down = function(knex) {
-  return knex.schema.dropTableIfExists("progress_tag");
+  return knex.schema.dropTableIfExists("progress_tags");
 };
