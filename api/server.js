@@ -2,6 +2,9 @@ const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
 
+// local imports
+const ProjectRoute = require('./routes/projects/route.js')
+
 
 const server = express();
 
@@ -9,6 +12,9 @@ server.use(helmet());
 server.use(cors());
 server.use(logger);
 server.use(express.json());
+
+// local routes
+server.use('/projects', ProjectRoute)
 
 
 // global logger middleware
