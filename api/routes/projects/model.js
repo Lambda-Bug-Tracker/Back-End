@@ -7,7 +7,7 @@ module.exports = {
 };
 
 
-
+// not finding multiple
 function getByUserId(userID) {
   return db("user_projects as up")
     .join("users", "users.id", "=", "up.user_id")
