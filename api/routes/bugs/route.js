@@ -9,3 +9,5 @@ router.get("/project/:id", (req, res) => {
         .then(bugs => res.status(200).json({ bugs }))
         .catch(err => res.status(500).json({ err: err.message }))
 })
+
+module.exports = router();
