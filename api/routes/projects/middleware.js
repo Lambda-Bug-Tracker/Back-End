@@ -1,9 +1,17 @@
-const Projects = require('./model.js')
+const { getProjectById } = require("./model.js");
 
 module.exports = {
-    validateProjectID
-}
+  validateProjectID
+};
 
-function validateProjectID ( req, res, next ) {
-    return null;
+function validateProjectID(req, res, next) {
+  const { project_id } = req.params;
+
+  getProjectById(project_id).then(project => {
+    if (project) {
+      next();
+    } else {
+      res.status(400).json({ message: "project id does not exists" });
+    }
+  });
 }
