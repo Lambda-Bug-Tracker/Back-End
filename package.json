@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "docs": "apidoc -i ./ -e node_modules -o ./docs",
     "server": "nodemon index.js",
     "start": "node index.js",
     "test": "cross-env NODE_ENV=testing jest --watch --verbose --runInBand"
@@ -30,6 +31,7 @@
     "sqlite3": "^4.1.1"
   },
   "devDependencies": {
+    "apidoc": "^0.19.1",
     "chalk": "^3.0.0",
     "jest": "^24.9.0",
     "nodemon": "^2.0.2",

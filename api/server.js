@@ -20,7 +20,7 @@ server.use("/auth", AuthRoute);
 server.use("/projects", ProjectRoute);
 server.use("/bugs", BugRoute);
 server.use("/notes", NotesRoute);
-
+server.use('/docs', express.static('./docs'))
 // global logger middleware
 
 function logger(req, res, next) {
