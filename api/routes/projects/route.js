@@ -36,7 +36,7 @@ router.get("/:user_id", firebaseToUser, async (req, res) => {
  * @apiParam {String} description Description of project
  * 
  * @apiSuccessExample {json} Success-Response-Example:
- *    HTTP 1.1 201 Created
+ *    HTTP/1.1 201 Created
  *    {
         "newProject": [
           {
@@ -67,7 +67,7 @@ router.post("/:user_id", firebaseToUser, (req, res) => {
  * @apiPara {String} description Description of project
  *
  * @apiSuccessExample {json} Success-Response-Example:
- *    HTTP 1.1 204 No Content
+ *    HTTP/1.1 204 No Content
  */
 
 router.put("/:user_id/:project_id", firebaseToUser, (req, res) => {
@@ -83,7 +83,7 @@ router.put("/:user_id/:project_id", firebaseToUser, (req, res) => {
  * @api {delete} /projects/:user_id/:project_id
  *
  * @apiSuccessExample {json} Success-Response-Example:
- *    HTTP 1.1 200 OK
+ *    HTTP/1.1 200 OK
  *    {
         "success": "deleted"
       }
