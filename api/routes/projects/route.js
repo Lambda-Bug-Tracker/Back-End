@@ -64,7 +64,7 @@ router.post("/:user_id", firebaseToUser, (req, res) => {
 /**
  * @api {put} /projects/:user_id
  * @apiParam {String{...128}} name Name of project Must be unique
- * @apiPara {String} description Description of project
+ * @apiParam {String} description Description of project
  *
  * @apiSuccessExample {json} Success-Response-Example:
  *    HTTP/1.1 204 No Content
