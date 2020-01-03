@@ -43,6 +43,6 @@ console.log(userID, id)
     return db("projects")
       .where({ id })
       .del()
-      .then(() => res);
+      .then(() => res)
   });
 }

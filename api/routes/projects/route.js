@@ -1,7 +1,12 @@
 const express = require("express");
 const router = express.Router();
 const firebaseToUser = require("../../middleware/firebaseMapToUser");
-const { getByUserId, addProject, editProject, deleteProject } = require("./model.js");
+const {
+  getByUserId,
+  addProject,
+  editProject,
+  deleteProject
+} = require("./model.js");
 
 router.get("/:user_id", firebaseToUser, async (req, res) => {
   console.log("params", req.params);
@@ -38,10 +43,11 @@ router.put("/:user_id/:project_id", firebaseToUser, (req, res) => {
 });
 
 router.delete("/:user_id/:project_id", firebaseToUser, (req, res) => {
-    const { user_id, project_id } = req.params;
+  const { user_id, project_id } = req.params;
 
-    deleteProject(user_id, project_id)
-    .then(res => res)
-})
+  deleteProject(user_id, project_id)
+    .then(project => res.status(200).json({ success: 'deleted' }))
+    .catch(err => res.status(500).json({ error: err.message }));
+});
 
 module.exports = router;
