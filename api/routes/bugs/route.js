@@ -2,10 +2,12 @@ const express = require("express");
 const router = express.Router();
 const {
   getByProjectId,
+  getByBugId,
   createBug,
   createProjectBug,
   findBug,
-  updateBug
+  updateBug,
+  removeBug
 } = require("./model.js");
 
 /**
@@ -15,7 +17,13 @@ const {
  *    {
  *      "bugs": [
  *        {
- *          "bug_name": "bug2"
+ *          "id": 1,
+ *          "bug_name": "bug1",
+ *          "description": "testing bugs",
+ *          "priority_tag": 1,
+ *          "progress_tag": 1,
+ *          "hash_tag": 2,
+ *          "created_at": 1578069493115
  *        }
  *      ]
  *    }
@@ -25,6 +33,33 @@ router.get("/:project_id", (req, res) => {
   const { project_id } = req.params;
 
   getByProjectId(project_id)
+    .then(bugs => res.status(200).json({ bugs }))
+    .catch(err => res.status(500).json({ err: err.message }));
+});
+
+/**
+ * @api {get} /bugs/specific/:bug_id
+ * @apiSuccessExample {json} Success-Response-Example:
+ *    HTTP/1.1 200 OK
+ *    {
+ *      "bugs": [
+ *        {
+ *          "id": 1,
+ *          "bug_name": "bug1",
+ *          "description": "testing bugs",
+ *          "priority_tag": 1,
+ *          "progress_tag": 1,
+ *          "hash_tag": 2,
+ *          "created_at": 1578069493115
+ *        }
+ *      ]
+ *    }
+ */
+
+router.get("/specific/:bug_id", (req, res) => {
+  const { bug_id } = req.params;
+
+  getByProjectId(bug_id)
     .then(bugs => res.status(200).json({ bugs }))
     .catch(err => res.status(500).json({ err: err.message }));
 });
@@ -102,6 +137,31 @@ router.put("/:bug_id", async (req, res) => {
     }
   } catch (err) {
     res.status(500).json({ errMessage: err.message, devMessage: "💩" });
+  }
+});
+
+/**
+ * @api {delete} /bugs/:project_id
+ * @apiSuccessExample {json} Success-Response-Example:
+ *    HTTP/1.1 200 OK
+ *
+ */
+
+router.delete("/:bug_id", async (req, res) => {
+  const { bug_id } = req.params;
+
+  try {
+    const deletedBug = await removeBug(bug_id);
+
+    if (deletedBug) {
+      res
+        .status(200)
+        .json({ message: "Bug has been successfully deleted. 👌" });
+    } else {
+      res.status(404).json({ message: "Bug was not found. 🤷‍♂" });
+    }
+  } catch (err) {
+    res.status(500).json({ message: "Server err 💩", error: err.message });
   }
 });
 
