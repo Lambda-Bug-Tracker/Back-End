@@ -18,6 +18,7 @@ function getByProjectId(projectID) {
       //     "bugs.priority_tag as priority_tag", "bugs.created_at as created_at"
       // )
       .select(
+        "bugs.id",
         "bugs.name as bug_name",
         "bugs.description",
         "bugs.priority_tag",
