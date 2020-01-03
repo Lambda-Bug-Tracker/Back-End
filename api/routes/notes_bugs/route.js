@@ -1,10 +1,23 @@
 const express = require("express");
 const router = express.Router();
-const firebaseToUser = require("../../middleware/firebaseMapToUser.js");
 
+const { validateBugId } = require("./middleware.js");
 const { getNotesByBugId, addNote, deleteNote } = require("./model.js");
 
-router.get("/:bug_id", (req, res) => {
+/**
+ * @api {get} /notes/:bug_id
+ * @apiSuccessExample {json} Success-Response-Example:
+ *    HTTP/1.1 200 OK
+ *    {
+ *      "notes": [
+ *        {
+ *          "additional_note": "New Note"
+ *        }
+ *      ]
+ *    }
+ */
+
+router.get("/:bug_id", validateBugId, (req, res) => {
   const { bug_id } = req.params;
 
   getNotesByBugId(bug_id)
@@ -12,7 +25,20 @@ router.get("/:bug_id", (req, res) => {
     .catch(err => res.status(500).json({ error: err.message }));
 });
 
-router.post("/:bug_id", (req, res) => {
+/**
+ * @api {post} /notes/:bug_id
+ * @apiSuccessExample {json} Success-Response-Example:
+ *    HTTP/1.1 201 Created
+ *    {
+ *      "notes": [
+ *        {
+ *          "additional_note": "New Note"
+ *        }
+ *      ]
+ *    }
+ */
+
+router.post("/:bug_id", validateBugId, (req, res) => {
   const { bug_id } = req.params;
   const note = req.body;
 
@@ -21,15 +47,15 @@ router.post("/:bug_id", (req, res) => {
     .catch(err => res.status(500).json({ error: err.message }));
 });
 
-router.delete("/:bug_id/:note_id", (req, res) => {
-  const { bug_id, note_id } = req.params;
+// router.delete("/:bug_id/:note_id", (req, res) => {
+//   const { bug_id, note_id } = req.params;
 
-  console.log("bug_id", bug_id);
-  console.log("note_id", note_id);
+//   console.log("bug_id", bug_id);
+//   console.log("note_id", note_id);
 
-  deleteNote(bug_id, note_id)
-    .then(() => res.status(200).json({ success: "deleted" }))
-    .catch(err => res.status(500).json({ error: err.message }));
-});
+//   deleteNote(bug_id, note_id)
+//     .then(() => res.status(200).json({ success: "deleted" }))
+//     .catch(err => res.status(500).json({ error: err.message }));
+// });
 
 module.exports = router;
