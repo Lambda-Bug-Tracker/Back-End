@@ -3,8 +3,15 @@ module.exports = {
   getByUserId,
   addProject,
   editProject,
-  deleteProject
+  deleteProject,
+  getProjectById
 };
+
+function getProjectById(id){
+  return db('projects')
+  .where({id})
+  .first()
+}
 
 // not finding multiple
 function getByUserId(userID) {

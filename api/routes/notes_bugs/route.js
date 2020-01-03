@@ -1,13 +1,13 @@
 const express = require("express");
 const router = express.Router();
 
-const { validateBugId} = require("./middleware.js")
+const { validateBugId } = require("./middleware.js");
 const { getNotesByBugId, addNote, deleteNote } = require("./model.js");
 
 /**
  * @api {get} /notes/:bug_id
  * @apiSuccessExample {json} Success-Response-Example:
- *    HTTP/1.1 200 OK    
+ *    HTTP/1.1 200 OK
  *    {
  *      "notes": [
  *        {
@@ -28,7 +28,7 @@ router.get("/:bug_id", validateBugId, (req, res) => {
 /**
  * @api {post} /notes/:bug_id
  * @apiSuccessExample {json} Success-Response-Example:
- *    HTTP/1.1 201 Created    
+ *    HTTP/1.1 201 Created
  *    {
  *      "notes": [
  *        {

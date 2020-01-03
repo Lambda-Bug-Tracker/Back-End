@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const firebaseToUser = require("../../middleware/firebaseMapToUser");
+const { validateProjectID } = require('./middleware.js')
 const {
   getByUserId,
   addProject,
@@ -76,7 +77,7 @@ router.post("/:user_id", firebaseToUser, (req, res) => {
  *    HTTP/1.1 204 No Content
  */
 
-router.put("/:user_id/:project_id", firebaseToUser, (req, res) => {
+router.put("/:user_id/:project_id", firebaseToUser, validateProjectID, (req, res) => {
   const { user_id, project_id } = req.params;
   const changes = req.body;
 
@@ -95,7 +96,7 @@ router.put("/:user_id/:project_id", firebaseToUser, (req, res) => {
  *    }
  */
 
-router.delete("/:user_id/:project_id", firebaseToUser, (req, res) => {
+router.delete("/:user_id/:project_id", firebaseToUser, validateProjectID, (req, res) => {
   const { user_id, project_id } = req.params;
 
   deleteProject(user_id, project_id)
