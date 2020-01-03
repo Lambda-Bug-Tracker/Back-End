@@ -92,6 +92,15 @@ router.put(
   }
 );
 
+/**
+ * @api {post} /add-project/projects/:user_id
+ * @apiParam {Integer} user_id User you are trying to add to project
+ * @apiParam {Integer} admin Either a 0 for false or 1 for true
+ *
+ * @apiSuccessExample {json} Success-Response-Example:
+ *    HTTP/1.1 204 No Content
+ */
+
 // add user to project
 router.post(
   "/add-project-member/:user_id/:project_id/",
