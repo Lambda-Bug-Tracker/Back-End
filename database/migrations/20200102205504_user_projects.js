@@ -17,7 +17,8 @@ exports.up = function(knex) {
       .inTable("projects")
       .onDelete("CASCADE")
       .onUpdate("CASCADE");
-  });
+      tbl.boolean('is_admin').defaultTo(false)
+  })
 };
 
 exports.down = function(knex) {

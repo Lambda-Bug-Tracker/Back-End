@@ -3,8 +3,15 @@ module.exports = {
   getByUserId,
   addProject,
   editProject,
-  deleteProject
+  deleteProject,
+  getProjectById
 };
+
+function getProjectById(id){
+  return db('projects')
+  .where({id})
+  .first()
+}
 
 // not finding multiple
 function getByUserId(userID) {
@@ -15,7 +22,8 @@ function getByUserId(userID) {
       "up.id as user_project_id",
       "projects.id as project_id",
       "projects.name as project_name",
-      "projects.description"
+      "projects.description",
+      "up.is_admin"
     )
     .where("up.user_id", userID);
 }
@@ -24,7 +32,8 @@ async function addProject(project, userID) {
   const id = await db("projects").insert(project);
   const newUserProject = {
     user_id: userID,
-    project_id: id[0]
+    project_id: id[0],
+    is_admin: true
   };
   await db("user_projects").insert(newUserProject);
 

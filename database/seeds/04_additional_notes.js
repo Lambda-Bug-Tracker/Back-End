@@ -5,9 +5,9 @@ exports.seed = function(knex) {
     .then(function () {
       // Inserts seed entries
       return knex('additional_notes').insert([
-        {id: 1, note: '💩'},
-        {id: 2, note: '💩'},
-        {id: 3, note: '💩'}
+        {id: 1, note: 'dis a note on a bug 🐛'},
+        {id: 2, note: 'dis a note on a bug 🦋'},
+        {id: 3, note: 'dis a note on a bug 🐜'}
       ]);
     });
 };

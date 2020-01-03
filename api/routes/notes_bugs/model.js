@@ -3,8 +3,15 @@ const db = require("../../../database/dbConfig.js");
 module.exports = {
   getNotesByBugId,
   addNote,
-  deleteNote
+  deleteNote,
+  getBugById
 };
+
+function getBugById(id) {
+  return db("bugs")
+    .where({ id })
+    .first();
+}
 
 function getNotesByBugId(bugID) {
   return db("notes_bugs as nb")

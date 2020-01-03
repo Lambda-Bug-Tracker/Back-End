@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const firebaseToUser = require("../../middleware/firebaseMapToUser");
+const { validateProjectID } = require('./middleware.js')
 const {
   getByUserId,
   addProject,
@@ -13,13 +14,15 @@ const {
  * @apiSuccessExample {json} Success-Response-Example:
  *    HTTP/1.1 200 OK    
  *    {
-        "projects": [
-          {
-            "project_name": "A Project",
-            "description": "dis is a project description"
-          }
-        ]
-      }
+ *      "projects": [
+ *        {
+ *          "user_project_id": 2,
+ *          "project_id": 2,
+ *          "project_name": "project2",
+ *          "description": "this is project dos"
+ *        }
+ *      ]
+ *    }
  */
 
 router.get("/:user_id", firebaseToUser, async (req, res) => {
@@ -38,17 +41,21 @@ router.get("/:user_id", firebaseToUser, async (req, res) => {
  * @apiSuccessExample {json} Success-Response-Example:
  *    HTTP/1.1 201 Created
  *    {
-        "newProject": [
-          {
-            "project_name": "project 23",
-            "description": " dis is 23"
-          },
-          {
-            "project_name": "project 24",
-            "description": " dis is 24"
-          }
-        ]
-      }
+ *      "projects": [
+ *        {
+ *          "user_project_id": 2,
+ *          "project_id": 2,
+ *          "project_name": "project2",
+ *          "description": "this is project dos"
+ *        },
+ *        {
+ *          "user_project_id": 4,
+ *          "project_id": 4, 
+ *          "project_name": "project 30",
+ *          "description": " dis is 30"
+ *        }
+ *      ]
+ *    }
  */
 
 router.post("/:user_id", firebaseToUser, (req, res) => {
@@ -70,7 +77,7 @@ router.post("/:user_id", firebaseToUser, (req, res) => {
  *    HTTP/1.1 204 No Content
  */
 
-router.put("/:user_id/:project_id", firebaseToUser, (req, res) => {
+router.put("/:user_id/:project_id", firebaseToUser, validateProjectID, (req, res) => {
   const { user_id, project_id } = req.params;
   const changes = req.body;
 
@@ -85,11 +92,11 @@ router.put("/:user_id/:project_id", firebaseToUser, (req, res) => {
  * @apiSuccessExample {json} Success-Response-Example:
  *    HTTP/1.1 200 OK
  *    {
-        "success": "deleted"
-      }
+ *      "success": "deleted"
+ *    }
  */
 
-router.delete("/:user_id/:project_id", firebaseToUser, (req, res) => {
+router.delete("/:user_id/:project_id", firebaseToUser, validateProjectID, (req, res) => {
   const { user_id, project_id } = req.params;
 
   deleteProject(user_id, project_id)
