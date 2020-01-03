@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const firebaseToUser = require("../../middleware/firebaseMapToUser.js");
 
+const { validateBugId} = require("./middleware.js")
 const { getNotesByBugId, addNote, deleteNote } = require("./model.js");
 
 /**
@@ -17,7 +17,7 @@ const { getNotesByBugId, addNote, deleteNote } = require("./model.js");
  *    }
  */
 
-router.get("/:bug_id", (req, res) => {
+router.get("/:bug_id", validateBugId, (req, res) => {
   const { bug_id } = req.params;
 
   getNotesByBugId(bug_id)
@@ -38,7 +38,7 @@ router.get("/:bug_id", (req, res) => {
  *    }
  */
 
-router.post("/:bug_id", (req, res) => {
+router.post("/:bug_id", validateBugId, (req, res) => {
   const { bug_id } = req.params;
   const note = req.body;
 
