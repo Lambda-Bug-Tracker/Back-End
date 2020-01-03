@@ -13,7 +13,7 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "./api/routes/bugs/route.js",
+    "filename": "api/routes/bugs/route.js",
     "group": "C:\\Users\\Chris\\Documents\\git\\hackathon\\Back-End\\api\\routes\\bugs\\route.js",
     "groupTitle": "C:\\Users\\Chris\\Documents\\git\\hackathon\\Back-End\\api\\routes\\bugs\\route.js",
     "name": "GetBugsProject_id"
@@ -81,7 +81,7 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "./api/routes/bugs/route.js",
+    "filename": "api/routes/bugs/route.js",
     "group": "C:\\Users\\Chris\\Documents\\git\\hackathon\\Back-End\\api\\routes\\bugs\\route.js",
     "groupTitle": "C:\\Users\\Chris\\Documents\\git\\hackathon\\Back-End\\api\\routes\\bugs\\route.js",
     "name": "PostBugsProject_id"
@@ -149,7 +149,7 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "./api/routes/bugs/route.js",
+    "filename": "api/routes/bugs/route.js",
     "group": "C:\\Users\\Chris\\Documents\\git\\hackathon\\Back-End\\api\\routes\\bugs\\route.js",
     "groupTitle": "C:\\Users\\Chris\\Documents\\git\\hackathon\\Back-End\\api\\routes\\bugs\\route.js",
     "name": "PutBugsBug_id"
@@ -168,7 +168,7 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "./api/routes/notes_bugs/route.js",
+    "filename": "api/routes/notes_bugs/route.js",
     "group": "C:\\Users\\Chris\\Documents\\git\\hackathon\\Back-End\\api\\routes\\notes_bugs\\route.js",
     "groupTitle": "C:\\Users\\Chris\\Documents\\git\\hackathon\\Back-End\\api\\routes\\notes_bugs\\route.js",
     "name": "GetNotesBug_id"
@@ -187,7 +187,7 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "./api/routes/notes_bugs/route.js",
+    "filename": "api/routes/notes_bugs/route.js",
     "group": "C:\\Users\\Chris\\Documents\\git\\hackathon\\Back-End\\api\\routes\\notes_bugs\\route.js",
     "groupTitle": "C:\\Users\\Chris\\Documents\\git\\hackathon\\Back-End\\api\\routes\\notes_bugs\\route.js",
     "name": "PostNotesBug_id"
@@ -206,7 +206,7 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "./api/routes/projects/route.js",
+    "filename": "api/routes/projects/route.js",
     "group": "C:\\Users\\Chris\\Documents\\git\\hackathon\\Back-End\\api\\routes\\projects\\route.js",
     "groupTitle": "C:\\Users\\Chris\\Documents\\git\\hackathon\\Back-End\\api\\routes\\projects\\route.js",
     "name": "DeleteProjectsUser_idProject_id"
@@ -225,7 +225,7 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "./api/routes/projects/route.js",
+    "filename": "api/routes/projects/route.js",
     "group": "C:\\Users\\Chris\\Documents\\git\\hackathon\\Back-End\\api\\routes\\projects\\route.js",
     "groupTitle": "C:\\Users\\Chris\\Documents\\git\\hackathon\\Back-End\\api\\routes\\projects\\route.js",
     "name": "GetProjectsUser_id"
@@ -264,7 +264,7 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "./api/routes/projects/route.js",
+    "filename": "api/routes/projects/route.js",
     "group": "C:\\Users\\Chris\\Documents\\git\\hackathon\\Back-End\\api\\routes\\projects\\route.js",
     "groupTitle": "C:\\Users\\Chris\\Documents\\git\\hackathon\\Back-End\\api\\routes\\projects\\route.js",
     "name": "PostAddProjectProjectsUser_id"
@@ -304,7 +304,7 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "./api/routes/projects/route.js",
+    "filename": "api/routes/projects/route.js",
     "group": "C:\\Users\\Chris\\Documents\\git\\hackathon\\Back-End\\api\\routes\\projects\\route.js",
     "groupTitle": "C:\\Users\\Chris\\Documents\\git\\hackathon\\Back-End\\api\\routes\\projects\\route.js",
     "name": "PostProjectsUser_id"
@@ -344,37 +344,9 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "./api/routes/projects/route.js",
+    "filename": "api/routes/projects/route.js",
     "group": "C:\\Users\\Chris\\Documents\\git\\hackathon\\Back-End\\api\\routes\\projects\\route.js",
     "groupTitle": "C:\\Users\\Chris\\Documents\\git\\hackathon\\Back-End\\api\\routes\\projects\\route.js",
     "name": "PutProjectsUser_id"
-  },
-  {
-    "success": {
-      "fields": {
-        "Success 200": [
-          {
-            "group": "Success 200",
-            "optional": false,
-            "field": "varname1",
-            "description": "<p>No type.</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "varname2",
-            "description": "<p>With type.</p>"
-          }
-        ]
-      }
-    },
-    "type": "",
-    "url": "",
-    "version": "0.0.0",
-    "filename": "./docs/main.js",
-    "group": "C:\\Users\\Chris\\Documents\\git\\hackathon\\Back-End\\docs\\main.js",
-    "groupTitle": "C:\\Users\\Chris\\Documents\\git\\hackathon\\Back-End\\docs\\main.js",
-    "name": ""
   }
 ]
