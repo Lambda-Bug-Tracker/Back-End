@@ -6,28 +6,26 @@ module.exports = {
   deleteProject
 };
 
-
 // not finding multiple
 function getByUserId(userID) {
   return db("user_projects as up")
     .join("users", "users.id", "up.user_id")
     .join("projects", "projects.id", "up.project_id")
-    .select("up.id as user_project_id","projects.id as project_id", "projects.name as project_name", "projects.description")
+    .select(
+      "up.id as user_project_id",
+      "projects.id as project_id",
+      "projects.name as project_name",
+      "projects.description"
+    )
     .where("up.user_id", userID);
 }
 
 async function addProject(project, userID) {
   const id = await db("projects").insert(project);
-
-  console.log('in function: id: ', id)
-
   const newUserProject = {
     user_id: userID,
     project_id: id[0]
   };
-
-  console.log('newUserProject',newUserProject)
-
   await db("user_projects").insert(newUserProject);
 
   return getByUserId(userID);

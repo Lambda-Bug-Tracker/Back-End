@@ -25,8 +25,6 @@ const {
 router.get("/:user_id", firebaseToUser, async (req, res) => {
   const { user_id } = req.params;
 
-  console.log('user_id: ', user_id)
-
   getByUserId(user_id)
     .then(projects => res.status(200).json({ projects }))
     .catch(err => res.status(500).json({ err: err.message }));
