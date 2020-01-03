@@ -1,18 +1,19 @@
 const express = require("express");
 const router = express.Router();
 const firebaseToUser = require("../../middleware/firebaseMapToUser");
-const { validateProjectID } = require('./middleware.js')
+const { validateProjectID } = require("./middleware.js");
 const {
   getByUserId,
   addProject,
   editProject,
-  deleteProject
+  deleteProject,
+   addNewMember
 } = require("./model.js");
 
 /**
  * @api {get} /projects/:user_id
  * @apiSuccessExample {json} Success-Response-Example:
- *    HTTP/1.1 200 OK    
+ *    HTTP/1.1 200 OK
  *    {
  *      "projects": [
  *        {
@@ -37,7 +38,7 @@ router.get("/:user_id", firebaseToUser, async (req, res) => {
  * @api {post} /projects/:user_id
  * @apiParam {String{...128}} name Name of project Must be unique
  * @apiParam {String} description Description of project
- * 
+ *
  * @apiSuccessExample {json} Success-Response-Example:
  *    HTTP/1.1 201 Created
  *    {
@@ -50,7 +51,7 @@ router.get("/:user_id", firebaseToUser, async (req, res) => {
  *        },
  *        {
  *          "user_project_id": 4,
- *          "project_id": 4, 
+ *          "project_id": 4,
  *          "project_name": "project 30",
  *          "description": " dis is 30"
  *        }
@@ -77,14 +78,49 @@ router.post("/:user_id", firebaseToUser, (req, res) => {
  *    HTTP/1.1 204 No Content
  */
 
-router.put("/:user_id/:project_id", firebaseToUser, validateProjectID, (req, res) => {
-  const { user_id, project_id } = req.params;
-  const changes = req.body;
+router.put(
+  "/:user_id/:project_id",
+  firebaseToUser,
+  validateProjectID,
+  (req, res) => {
+    const { user_id, project_id } = req.params;
+    const changes = req.body;
 
-  editProject(user_id, project_id, changes)
-    .then(updatedProject => res.status(204).json({ updatedProject }))
-    .catch(err => res.status(500).json({ error: err.message }));
-});
+    editProject(user_id, project_id, changes)
+      .then(updatedProject => res.status(204).json({ updatedProject }))
+      .catch(err => res.status(500).json({ error: err.message }));
+  }
+);
+
+/**
+ * @api {post} /add-project/projects/:user_id
+ * @apiParam {Integer} user_id User you are trying to add to project
+ * @apiParam {Integer} admin Either a 0 for false or 1 for true
+ *
+ * @apiSuccessExample {json} Success-Response-Example:
+ *    HTTP/1.1 204 No Content
+ */
+
+// add user to project
+router.post(
+  "/add-project-member/:user_id/:project_id/",
+  firebaseToUser,
+  validateProjectID,
+  (req, res) => {
+    const params = req.params;
+    const body = req.body
+
+    const newMember = {
+      user_id: req.body.user_id,
+      project_id: req.params.project_id,
+      is_admin: req.body.admin
+    }
+
+    addNewMember(newMember)
+      .then(projectMember => res.status(204).json({ projectMember }))
+      .catch(err => res.status(500).json({ error: err.message }));
+  }
+);
 
 /**
  * @api {delete} /projects/:user_id/:project_id
@@ -96,12 +132,17 @@ router.put("/:user_id/:project_id", firebaseToUser, validateProjectID, (req, res
  *    }
  */
 
-router.delete("/:user_id/:project_id", firebaseToUser, validateProjectID, (req, res) => {
-  const { user_id, project_id } = req.params;
+router.delete(
+  "/:user_id/:project_id",
+  firebaseToUser,
+  validateProjectID,
+  (req, res) => {
+    const { user_id, project_id } = req.params;
 
-  deleteProject(user_id, project_id)
-    .then(project => res.status(200).json({ success: "deleted" }))
-    .catch(err => res.status(500).json({ error: err.message }));
-});
+    deleteProject(user_id, project_id)
+      .then(project => res.status(200).json({ success: "deleted" }))
+      .catch(err => res.status(500).json({ error: err.message }));
+  }
+);
 
 module.exports = router;
