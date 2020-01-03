@@ -10,4 +10,4 @@ router.get("/project/:id", (req, res) => {
         .catch(err => res.status(500).json({ err: err.message }))
 })
 
-module.exports = router();
+module.exports = router;
