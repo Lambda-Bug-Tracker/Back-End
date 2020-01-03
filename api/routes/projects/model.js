@@ -3,7 +3,7 @@ module.exports = {
   getByUserId,
   addProject,
   editProject,
-  deleteProject,
+  deleteProject
 };
 
 function getByUserId(userID) {
@@ -38,11 +38,10 @@ async function editProject(userID, projectID, changes) {
 
 function deleteProject(userID, projectID) {
   const id = projectID;
-console.log(userID, id)
   return getByUserId(userID).then(res => {
     return db("projects")
       .where({ id })
       .del()
-      .then(() => res)
+      .then(() => res);
   });
 }
