@@ -2,7 +2,8 @@ const db = require("../../../database/dbConfig.js");
 
 module.exports = {
   getNotesByBugId,
-  addNote
+  addNote,
+  deleteNote
 };
 
 function getNotesByBugId(bugID) {
@@ -24,4 +25,14 @@ async function addNote(bugID, newNote) {
   await db("notes_bugs").insert(note);
 
   return getNotesByBugId(bugID);
+}
+
+function deleteNote(bugID, noteID) {
+  const id = noteID;
+  return getNotesByBugId(bugID).then(res => {
+    return db("additional_notes")
+      .where({ id })
+      .del()
+      .then(() => res);
+  });
 }
