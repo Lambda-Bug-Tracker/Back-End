@@ -4,6 +4,19 @@ const firebaseToUser = require("../../middleware/firebaseMapToUser.js");
 
 const { getNotesByBugId, addNote, deleteNote } = require("./model.js");
 
+/**
+ * @api {get} /notes/:bug_id
+ * @apiSuccessExample {json} Success-Response-Example:
+ *    HTTP/1.1 200 OK    
+ *    {
+ *      "notes": [
+ *        {
+ *          "additional_note": "New Note"
+ *        }
+ *      ]
+ *    }
+ */
+
 router.get("/:bug_id", (req, res) => {
   const { bug_id } = req.params;
 
@@ -11,6 +24,19 @@ router.get("/:bug_id", (req, res) => {
     .then(notes => res.status(200).json({ notes }))
     .catch(err => res.status(500).json({ error: err.message }));
 });
+
+/**
+ * @api {post} /notes/:bug_id
+ * @apiSuccessExample {json} Success-Response-Example:
+ *    HTTP/1.1 201 Created    
+ *    {
+ *      "notes": [
+ *        {
+ *          "additional_note": "New Note"
+ *        }
+ *      ]
+ *    }
+ */
 
 router.post("/:bug_id", (req, res) => {
   const { bug_id } = req.params;
