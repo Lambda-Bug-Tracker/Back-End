@@ -4,8 +4,14 @@ module.exports = {
   addProject,
   editProject,
   deleteProject,
-  getProjectById
+  getProjectById,
+  addNewMember,
 };
+
+function addNewMember(newMember){
+  return db('user_projects')
+    .insert(newMember)
+}
 
 function getProjectById(id){
   return db('projects')
