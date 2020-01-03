@@ -1,7 +1,6 @@
 exports.up = function(knex) {
-  return knex.schema.createTable("project_members", tbl => {
+  return knex.schema.createTable("user_projects", tbl => {
     tbl.increments();
-    tbl.integer("is_project_admin").defaultTo(0);
     tbl
       .integer("user_id")
       .unsigned()
@@ -22,5 +21,5 @@ exports.up = function(knex) {
 };
 
 exports.down = function(knex) {
-  return knex.schema.dropTableIfExists("project_members");
+  return knex.schema.dropTableIfExists("user_projects");
 };

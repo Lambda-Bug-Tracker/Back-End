@@ -5,10 +5,7 @@ exports.up = function(knex) {
       .string("name", 128)
       .unique()
       .notNullable();
-    tbl
-      .text("description")
-      .unique()
-      .notNullable();
+    tbl.text("description").notNullable();
   });
 };
 

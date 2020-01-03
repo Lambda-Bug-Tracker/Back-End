@@ -1,7 +1,7 @@
 exports.up = function(knex) {
   return knex.schema.createTable("additional_notes", tbl => {
     tbl.increments();
-    tbl.text("note").notNullable;
+    tbl.text("note").notNullable();
   });
 };
 

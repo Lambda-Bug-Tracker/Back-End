@@ -9,7 +9,10 @@ exports.up = function(knex) {
       .string("email", 128)
       .unique()
       .notNullable();
-    tbl.string("display_name", 128).notNullable();
+    tbl
+      .string("display_name", 128)
+      .unique()
+      .notNullable();
   });
 };
 

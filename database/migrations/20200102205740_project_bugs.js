@@ -1,25 +1,26 @@
 exports.up = function(knex) {
-  return knex.schema.createTable("member_bugs", tbl => {
+  return knex.schema.createTable("project_bugs", tbl => {
     tbl.increments();
     tbl
-      .integer("project_bug_id")
+      .integer("project_id")
       .unsigned()
       .notNullable()
       .references("id")
-      .inTable("project_bugs")
+      .inTable("projects")
       .onDelete("CASCADE")
       .onUpdate("CASCADE");
+
     tbl
-      .integer("project_member_id")
+      .integer("bug_id")
       .unsigned()
       .notNullable()
       .references("id")
-      .inTable("project_members")
+      .inTable("bugs")
       .onDelete("CASCADE")
       .onUpdate("CASCADE");
   });
 };
 
 exports.down = function(knex) {
-  return knex.schema.dropTableIfExists("member_bugs");
+  return knex.schema.dropTableIfExists("project_bugs");
 };
