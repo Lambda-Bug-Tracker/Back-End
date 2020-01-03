@@ -2,7 +2,8 @@ const db = require("../../../database/dbConfig.js");
 module.exports = {
   getByUserId,
   addProject,
-  editProject
+  editProject,
+  deleteProject,
 };
 
 function getByUserId(userID) {
@@ -21,17 +22,27 @@ async function addProject(project, userID) {
     project_id: id[0]
   };
 
-   await db("user_projects").insert(newUserProject);
+  await db("user_projects").insert(newUserProject);
 
   return getByUserId(userID);
 }
 
 async function editProject(userID, projectID, changes) {
   const id = projectID;
-  return getByUserId(userID)
-  .then(res => {
-     return db('projects')
-    .where({ id })
-    .update(changes, 'id')
-  })
+  return getByUserId(userID).then(res => {
+    return db("projects")
+      .where({ id })
+      .update(changes, "id");
+  });
+}
+
+function deleteProject(userID, projectID) {
+  const id = projectID;
+console.log(userID, id)
+  return getByUserId(userID).then(res => {
+    return db("projects")
+      .where({ id })
+      .del()
+      .then(() => res);
+  });
 }
