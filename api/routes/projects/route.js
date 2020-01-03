@@ -1,4 +1,4 @@
-  const express = require("express");
+const express = require("express");
 const router = express.Router();
 const firebaseToUser = require("../../middleware/firebaseMapToUser");
 const {
@@ -8,6 +8,20 @@ const {
   deleteProject
 } = require("./model.js");
 
+/**
+ * @api {get} /projects/:user_id
+ * @apiSuccessExample {json} Success-Response-Example:
+ *    HTTP/1.1 200 OK    
+ *    {
+        "projects": [
+          {
+            "project_name": "A Project",
+            "description": "dis is a project description"
+          }
+        ]
+      }
+ */
+
 router.get("/:user_id", firebaseToUser, async (req, res) => {
   const { user_id } = req.params;
 
@@ -15,6 +29,14 @@ router.get("/:user_id", firebaseToUser, async (req, res) => {
     .then(projects => res.status(200).json({ projects }))
     .catch(err => res.status(500).json({ err: err.message }));
 });
+
+/**
+ * @api {post} /projects/:user_id
+ * @apiParam {String{...128}} name Name of project
+ * @apiParam {String} description Description of project
+ * 
+ * 
+ */
 
 router.post("/:user_id", firebaseToUser, (req, res) => {
   const { user_id } = req.params;
