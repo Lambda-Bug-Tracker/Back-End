@@ -32,7 +32,7 @@ router.get("/:user_id", firebaseToUser, async (req, res) => {
 
 /**
  * @api {post} /projects/:user_id
- * @apiParam {String{...128}} name Name of project
+ * @apiParam {String{...128}} name Name of project Must be unique
  * @apiParam {String} description Description of project
  * 
  * @apiSuccessExample {json} Success-Response-Example:
@@ -63,7 +63,7 @@ router.post("/:user_id", firebaseToUser, (req, res) => {
 
 /**
  * @api {put} /projects/:user_id
- * @apiParam {String{...128}} name Name of project
+ * @apiParam {String{...128}} name Name of project Must be unique
  * @apiPara {String} description Description of project
  *
  * @apiSuccessExample {json} Success-Response-Example:
