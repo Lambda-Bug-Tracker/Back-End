@@ -2,7 +2,7 @@ exports.up = function(knex) {
   return knex.schema.createTable("users", tbl => {
     tbl.increments();
     tbl
-      .integer("firebase_id")
+      .string("firebase_id")
       .unique()
       .notNullable();
     tbl
