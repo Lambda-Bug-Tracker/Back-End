@@ -19,10 +19,14 @@ function getByUserId(userID) {
 async function addProject(project, userID) {
   const id = await db("projects").insert(project);
 
+  console.log('in function: id: ', id)
+
   const newUserProject = {
     user_id: userID,
     project_id: id[0]
   };
+
+  console.log('newUserProject',newUserProject)
 
   await db("user_projects").insert(newUserProject);
 
