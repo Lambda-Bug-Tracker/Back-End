@@ -28,4 +28,8 @@ function logger(req, res, next) {
   next();
 }
 
+server.get('/', (req, res) => {
+  return res.status(200).json(`<h1> server is up and running </h1>`)
+})
+
 module.exports = server;
