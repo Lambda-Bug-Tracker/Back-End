@@ -3,7 +3,9 @@ const db = require("../../../database/dbConfig");
 module.exports = {
   getByProjectId,
   createBug,
-  createProjectBug
+  createProjectBug,
+  findBug,
+  updateBug
 };
 
 function getByProjectId(projectID) {
@@ -15,7 +17,14 @@ function getByProjectId(projectID) {
       // .select("bugs.name as bugs_name", "bugs.description as bugs_description",
       //     "bugs.priority_tag as priority_tag", "bugs.created_at as created_at"
       // )
-      .select("bugs.name as bug_name")
+      .select(
+        "bugs.name as bug_name",
+        "bugs.description",
+        "bugs.priority_tag",
+        "bugs.progress_tag",
+        "bugs.hash_tag",
+        "bugs.created_at"
+      )
       .where("pb.project_id", projectID)
   );
 }
@@ -26,4 +35,17 @@ function createBug(bug) {
 
 function createProjectBug(IDs) {
   return db("project_bugs").insert(IDs);
+}
+
+function findBug(id) {
+  return db("bugs")
+    .where({ id })
+    .first();
+}
+
+async function updateBug(bug, id) {
+  await db("bugs")
+    .where({ id })
+    .update(bug);
+  return findBug(id);
 }
